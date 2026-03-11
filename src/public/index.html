@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашняя страница</title>
+    <style>
+        body {
+            background-color: #008080;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: "MS Sans Serif", Tahoma, sans-serif;
+            -webkit-font-smoothing: none;
+        }
+
+        .window {
+            background-color: #c0c0c0;
+            width: 400px;
+            padding: 2px;
+            border-top: 2px solid #ffffff;
+            border-left: 2px solid #ffffff;
+            border-right: 2px solid #000000;
+            border-bottom: 2px solid #000000;
+            box-shadow: 1px 1px 0px #808080;
+        }
+
+        .title-bar {
+            background: linear-gradient(90deg, #000080, #1084d0);
+            padding: 3px 5px 3px 3px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .title-bar-text {
+            letter-spacing: 0.5px;
+        }
+
+        .title-bar-controls button {
+            width: 16px;
+            height: 14px;
+            background-color: #c0c0c0;
+            border-top: 1px solid #ffffff;
+            border-left: 1px solid #ffffff;
+            border-right: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+            font-size: 9px;
+            font-weight: bold;
+            padding: 0;
+            cursor: default;
+        }
+
+        .window-body {
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 18px;
+            color: #000;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="window">
+        <div class="title-bar">
+            <div class="title-bar-text">Системное сообщение</div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize">_</button>
+                <button aria-label="Maximize">□</button>
+                <button aria-label="Close">×</button>
+            </div>
+        </div>
+        <div class="window-body">
+            <h1>Добро пожаловать!</h1>
+        </div>
+    </div>
+
+</body>
+</html>
