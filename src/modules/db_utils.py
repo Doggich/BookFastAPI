@@ -76,12 +76,4 @@ class JsonDataBase():
         if not found:
             raise IndexError(f"ID {id_} not found")
         with open(self.path, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=4)
-
-
-
-db  = JsonDataBase()
-print(type(db.read_all()))
-
-
-# print(data[0])      
+            json.dump(data, f, ensure_ascii=False, indent=4)    
