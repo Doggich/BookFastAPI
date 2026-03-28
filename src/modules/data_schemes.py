@@ -1,16 +1,26 @@
 from enum import Enum
 from pydantic import BaseModel, Field, field_validator
+from typing import TypedDict, List, Dict, Union
 from datetime import datetime
 
 
-class BookFormatScheme(str, Enum):     
+class BookFormat(str, Enum):     
     HARDCOVER = "Hardcover"
     PAPERBACK = "Paperback"
     EBOOK = "E-book"
 
 class BookMetaDataScheme(BaseModel):
     pages: int = Field(gt=0)         
-    format_: BookFormatScheme = Field(alias="format")        
+    format_: BookFormat = Field(alias="format")       
+
+class Book(TypedDict):
+   id_: int
+   title: str
+   author: str
+   year: int
+   genre: List[str]
+   is_available: bool
+   metadata: Dict[str, Union[int, BookFormat]]
 
 class BookScheme(BaseModel):
     title: str = Field(max_length=100)

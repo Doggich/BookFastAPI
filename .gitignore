@@ -1,0 +1,4 @@
+.env
+.venv/
+.fast_api_venv/
+__pycache__/

@@ -1,11 +1,14 @@
+
+
 from fastapi import APIRouter, HTTPException
 from starlette.status import HTTP_404_NOT_FOUND
-from src.db import books
-from src.modules.schemes import BookScheme
+from src.modules.db_utils import JsonDataBase
+from src.modules.data_schemes import BookScheme
 
 router = APIRouter(prefix="/books", tags=["Книги 📚"])
+db = JsonDataBase()
 
-@router.get("/", summary="Выдать все книги")
+@router.get("/")
 def get_all_books():
     """
         Получить список всех книг.
@@ -22,9 +25,10 @@ def get_all_books():
         **Статус:** `200 OK`
         **Примечание:** если книг нет, возвращается пустой массив `[]`.
     """
-    return books
+        
+    return db.read_all()
 
-@router.get("/{book_id}", summary="Выдать книгу по id")
+@router.get("/{book_id}")
 def get_book_by_id(book_id: int):
     """
         Получить книгу по её идентификатору.
@@ -53,12 +57,12 @@ def get_book_by_id(book_id: int):
         }
         ```
     """
-    for book in books:
-        if book["id"] == book_id:
-            return book
-    raise HTTPException(status_code=HTTP_404_NOT_FOUND, detail="Нет такой книги!")
+    try:
+        return db.read_by_id(book_id)
+    except IndexError:
+        raise HTTPException(status_code=HTTP_404_NOT_FOUND, detail="Нет такой книги!")
 
-@router.post("/", summary="Добавить книгу")
+@router.post("/")
 def post_book(new_book: BookScheme):
     """
         Добавить новую книгу.
@@ -87,18 +91,10 @@ def post_book(new_book: BookScheme):
 
         Примечание: ID генерируется автоматически (текущая длина списка + 1).
     """
-    books.append({
-        "id": len(books) + 1,
-        "title": new_book.title,
-        "author": new_book.author,
-        "year": new_book.year,
-        "genre": new_book.genre,
-        "is_available": new_book.is_available,
-        "metadata": new_book.metadata
-    })
+    db.add_book(new_book)        
     return {"status_code": "200", "detailed": "Книга успешно добавлена!"}
 
-@router.delete("/{book_id}", summary="Удалить книгу по id")
+@router.delete("/{book_id}")
 def del_book_by_id(book_id: int):
     """
         Удалить книгу по идентификатору.
@@ -121,17 +117,14 @@ def del_book_by_id(book_id: int):
         "detailed": "Книга успешно удалена!"
         }
         Примечание: после удаления ID оставшихся книг пересчитываются (начиная с 1).
-    """
-    book_to_remove = next((b for b in books if b["id"] == book_id), None)
-    if book_to_remove is None:
-        raise HTTPException(status_code=HTTP_404_NOT_FOUND, detail="Нет такой книги!")
-    books.remove(book_to_remove)
-    
-    for index, book in enumerate(books, start=1):
-        book["id"] = index
-    return {"status_code": "200", "detailed": "Книга успешно удалена!"}
+    """ 
+    try:
+        db.delete_by_id(book_id)   # метод нужно добавить в db_utils
+        return {"status_code": "200", "detailed": "Книга успешно удалена!"}
+    except IndexError:
+        raise HTTPException(status_code=404, detail="Нет такой книги!")
 
-@router.put("/{book_id}", summary="Обновить книгу по id")
+@router.put("/{book_id}")
 def put_book(book_id: int, update_book: BookScheme):
     """
         Полностью обновить информацию о книге.
@@ -173,13 +166,8 @@ def put_book(book_id: int, update_book: BookScheme):
 
         Примечание: выполняется полная замена всех полей книги.
     """
-    for book in books:
-        if book["id"] == book_id:
-            book["title"] = update_book.title
-            book["author"] = update_book.author
-            book["year"] = update_book.year
-            book["genre"] = update_book.genre
-            book["is_available"] = update_book.is_available
-            book["metadata"] = update_book.metadata
-            return {"status_code": "200", "detailed": f"Книга успешно обновлена (ID {book_id})!"}
-    raise HTTPException(status_code=HTTP_404_NOT_FOUND, detail="Книга для обновления не найдена")
+    try:
+        db.update_by_id(book_id, update_book)
+        return {"status_code": "200", "detailed": f"Книга успешно обновлена (ID {book_id})!"}
+    except IndexError:
+        raise HTTPException(status_code=404, detail="Книга для обновления не найдена")

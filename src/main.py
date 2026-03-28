@@ -1,8 +1,7 @@
-# main.py
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 import uvicorn
-from src.routers.books import router as books_router
+from src.routers.books import router as books_router 
 
 app = FastAPI()
 
