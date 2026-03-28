@@ -1,0 +1,15 @@
+{
+  "id": 2,
+  "title": "Автостопом по галактике",
+  "author": "Дуглас Адамс",
+  "year": 1979,
+  "genre": [
+    "Фантастика",
+    "Юмор"
+  ],
+  "is_available": false,
+  "metadata": {
+    "pages": 224,
+    "format": "E-book"
+  }
+}

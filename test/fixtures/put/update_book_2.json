@@ -1,0 +1,11 @@
+{
+  "title": "Гиперион",
+  "author": "Дэн Симмонс",
+  "year": 1989,
+  "genre": ["Фантастика", "Космическая опера"],
+  "is_available": true,
+  "metadata": {
+    "pages": 512,
+    "format": "Hardcover"
+  }
+}

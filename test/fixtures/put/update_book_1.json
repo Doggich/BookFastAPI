@@ -1,0 +1,11 @@
+{
+  "title": "Так говорил Заратустра",
+  "author": "Фридрих Ницше",
+  "year": 1883,
+  "genre": ["Философия"],
+  "is_available": true,
+  "metadata": {
+    "pages": 352,
+    "format": "Paperback"
+  }
+}

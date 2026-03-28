@@ -1,0 +1,11 @@
+{
+  "title": "Нейромант",
+  "author": "Уильям Гибсон",
+  "year": 1984,
+  "genre": ["Фантастика", "Киберпанк"],
+  "is_available": true,
+  "metadata": {
+    "pages": 320,
+    "format": "E-book"
+  }
+}

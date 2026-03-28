@@ -1,0 +1,11 @@
+{
+  "title": "Думай медленно... решай быстро",
+  "author": "Даниэль Канеман",
+  "year": 2011,
+  "genre": ["Психология", "Нон-фикшн"],
+  "is_available": false,
+  "metadata": {
+    "pages": 640,
+    "format": "Hardcover"
+  }
+}

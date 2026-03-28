@@ -1,0 +1,15 @@
+{
+  "id": 5,
+  "title": "1984",
+  "author": "Джордж Оруэлл",
+  "year": 1949,
+  "genre": [
+    "Антиутопия",
+    "Политика"
+  ],
+  "is_available": true,
+  "metadata": {
+    "pages": 328,
+    "format": "E-book"
+  }
+}

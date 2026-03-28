@@ -1,0 +1,11 @@
+{
+  "title": "Маленькая жизнь",
+  "author": "Ханья Янагихара",
+  "year": 2015,
+  "genre": ["Современная проза", "Драма"],
+  "is_available": true,
+  "metadata": {
+    "pages": 720,
+    "format": "Paperback"
+  }
+}

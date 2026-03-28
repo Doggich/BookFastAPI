@@ -1,5 +1,3 @@
-
-
 from fastapi import APIRouter, HTTPException
 from starlette.status import HTTP_404_NOT_FOUND
 from src.modules.db_utils import JsonDataBase

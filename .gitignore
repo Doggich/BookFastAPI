@@ -2,3 +2,4 @@
 .venv/
 .fast_api_venv/
 __pycache__/
+.pytest_cache/
